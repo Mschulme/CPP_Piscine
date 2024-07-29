@@ -1,0 +1,24 @@
+NAME = PmergeMe
+
+CXX = c++
+
+CXXFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98
+
+SRC = main.cpp InputParsing.cpp PmergeMe_vector.cpp PmergeMe_deque.cpp 
+
+OBJ = $(SRC:.cpp=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
+
+clean:
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
