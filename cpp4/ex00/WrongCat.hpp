@@ -1,9 +1,9 @@
 #ifndef WRONGCAT_HPP
 #define WRONGCAT_HPP
 
-#include <iostream>
-#include <cstdlib>
 #include <string>
+#include <cstdlib>
+#include <iostream>
 
 #include "WrongAnimal.hpp"
 
@@ -20,7 +20,6 @@ class WrongCat : public WrongAnimal
 
     protected:
         std::string type;
-
 };
 
 #endif

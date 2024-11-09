@@ -1,10 +1,10 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
-#include <string>
-#include <iostream>
-#include <cstdlib>
 #include <cmath>
+#include <string>
+#include <cstdlib>
+#include <iostream>
 
 class Fixed
 {
@@ -12,10 +12,10 @@ class Fixed
 		int FixedPointNumber;
 		static const int number_of_fractional_bits = 8;
 	public:
-		Fixed(); // Constructor
-		~Fixed(); // Destructor
-		Fixed(const Fixed& other); // Copy constructor
-		Fixed& operator = (const Fixed& other); // Assignment operator
+		Fixed();
+		~Fixed();
+		Fixed(const Fixed& other);
+		Fixed& operator = (const Fixed& other);
 		
 		// member functions
 

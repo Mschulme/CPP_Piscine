@@ -1,9 +1,9 @@
 #ifndef WRONGANIMAL_HPP
 #define WRONGANIMAL_HPP
 
-#include <iostream>
-#include <cstdlib>
 #include <string>
+#include <cstdlib>
+#include <iostream>
 
 class WrongAnimal
 {

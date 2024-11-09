@@ -1,8 +1,8 @@
 #ifndef ITER_HPP
 #define ITER_HPP
 
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 template <typename T, typename Function>
 void applyFunction(T array[], std::size_t size, Function f)

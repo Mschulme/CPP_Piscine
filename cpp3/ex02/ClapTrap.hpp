@@ -1,21 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mschulme <mschulme@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/28 17:20:12 by mschulme          #+#    #+#             */
-/*   Updated: 2024/07/05 15:07:11 by mschulme         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CLAPTRAP_HPP
 #define CLAPTRAP_HPP
 
 #include <string>
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 class	ClapTrap
 {

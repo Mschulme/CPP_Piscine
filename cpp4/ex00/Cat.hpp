@@ -1,8 +1,8 @@
 #ifndef CAT_HPP
 #define CAT_HPP
 
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 #include "Animal.hpp"
 

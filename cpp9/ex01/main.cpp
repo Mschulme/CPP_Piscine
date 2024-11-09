@@ -12,6 +12,5 @@ int main(int argc, char *argv[])
     
     RPN_calculator(str);
 
-
     return (EXIT_SUCCESS);
 }

@@ -18,9 +18,9 @@ class Fixed
 		Fixed(int const integer_input);
 		Fixed(float const float_input);
 
-		Fixed(const Fixed& other); // Copy constructor
-		~Fixed(); // Destructor
-		Fixed& operator = (const Fixed& other); // Assignment operator
+		Fixed(const Fixed& other);
+		~Fixed();
+		Fixed& operator = (const Fixed& other);
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);

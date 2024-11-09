@@ -1,21 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mschulme <mschulme@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/28 17:20:12 by mschulme          #+#    #+#             */
-/*   Updated: 2024/07/05 15:32:46 by mschulme         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FragTrap_HPP
 #define FragTrap_HPP
 
 #include <string>
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 class	FragTrap
 {
