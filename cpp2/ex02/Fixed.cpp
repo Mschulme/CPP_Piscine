@@ -1,6 +1,5 @@
 #include "Fixed.hpp"
 
-// Orthodox canonical form
 
 Fixed::Fixed(void)
 {

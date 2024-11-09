@@ -1,10 +1,10 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
-#include <string>
-#include <iostream>
 #include <cmath>
+#include <string>
 #include <cstdlib>
+#include <iostream>
 #include <exception>
 
 class Fixed
