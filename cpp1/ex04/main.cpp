@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mschulme <mschulme@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/15 00:11:52 by mschulme          #+#    #+#             */
-/*   Updated: 2024/07/08 16:54:15 by mschulme         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <iostream>
-#include <fstream>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 
 int	main(int argc, char *argv[])
 {

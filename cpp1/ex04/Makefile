@@ -18,6 +18,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f testfile.replace
 
 re: fclean all
 
