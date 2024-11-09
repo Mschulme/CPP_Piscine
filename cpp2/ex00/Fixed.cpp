@@ -1,7 +1,5 @@
 #include "Fixed.hpp"
 
-// Orthodox canonical form
-
 Fixed::Fixed()
 {
 	FixedPointNumber = 0;
@@ -26,8 +24,6 @@ Fixed& Fixed::operator=(const Fixed& other)
 		setRawBits(other.getRawBits());
 	return *this;
 }
-
-// Member functions
 
 int Fixed::getRawBits(void) const
 {

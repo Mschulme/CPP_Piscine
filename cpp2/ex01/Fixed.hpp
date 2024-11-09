@@ -3,7 +3,9 @@
 
 #include <cmath>
 #include <string>
+#include <cstdlib>
 #include <iostream>
+#include <bitset>
 
 class Fixed
 {
@@ -14,16 +16,17 @@ class Fixed
 		Fixed();
 		Fixed(int const integer_input);
 		Fixed(float const float_input);
-
-		Fixed(const Fixed& other);
 		~Fixed();
+		Fixed(const Fixed& other);
 		Fixed& operator = (const Fixed& other);
 		
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
 
 		int toInt(void) const;
-		float toFloat(void) const;		
+		float toFloat(void) const;
+
+		void visualizeBitShift_integer(int integer_input);
 };
 
 std::ostream &operator<<(std::ostream &os, Fixed const &other);
