@@ -1,20 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mschulme <mschulme@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/16 16:11:23 by mschulme          #+#    #+#             */
-/*   Updated: 2024/07/08 15:12:35 by mschulme         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "HumanA.hpp"
 
 HumanA::HumanA(std::string str, Weapon &weapon) : weapon(weapon)
 {
 	name = str;
+	std::cout << "HumanA: Constructor called." << std::endl;
 }
 
 HumanA::~HumanA(void)
