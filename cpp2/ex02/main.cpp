@@ -8,7 +8,6 @@ int main(void)
 	std::cout << "Value of a is: " << a << std::endl;
 	std::cout << "Value of b is: " << b << std::endl;
 
-	
 	std::cout << "Value of ++a is: " << ++a << std::endl;
 	std::cout << "Value of a++ is: " << a++ << std::endl;
 
@@ -20,11 +19,18 @@ int main(void)
 	std::cout << "Value of a - b is: " <<  a - b << std::endl;
 
 	Fixed c(2);
-	Fixed d(0);
+	Fixed d(8);
 	std::cout << "Value of c is: " << c << std::endl;
 	std::cout << "Value of d is: " << d << std::endl;
 	std::cout << "Value of c / d is: " <<  c / d << std::endl;
 
+	std::cout << std::boolalpha;
+	std::cout << "Result of c == d: " << (c == d) << std::endl;
+	std::cout << "Result of c != d: " << (c != d) << std::endl;
+	std::cout << "Result of c > d: " << (c > d) << std::endl;
+	std::cout << "Result of c < d: " << (c < d) << std::endl;
+	std::cout << "Result of c >= d: " << (c >= d) << std::endl;
+	std::cout << "Result of c <= d: " << (c <= d) << std::endl;
 
 	return (EXIT_SUCCESS);
 }
