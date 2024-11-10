@@ -1,43 +1,50 @@
 #include "ClapTrap.hpp"
 
-// Orthodox canonical form
+
+ClapTrap::ClapTrap()
+{
+	std::cout << "ClapTrap: Default Constructor called." << std::endl;
+}
+
 
 ClapTrap::ClapTrap(std::string name): Name(name), Hit_Points(10), Energy_Points(10), Attack_damage(0)
 {
-	std::cout << "ClapTrap: Constructor called. " << name << std::endl;
+	std::cout << "ClapTrap: Parametrized Constructor called. " << name << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap const &obj)
+
+ClapTrap::ClapTrap(ClapTrap const &other)
 {
-    if(this != &obj)
+    if(this != &other)
     {
-       	Name = obj.Name;
-		Hit_Points = obj.Hit_Points;
-		Energy_Points = obj.Energy_Points;
-		Attack_damage = obj.Attack_damage;
+       	Name = other.Name;
+		Hit_Points = other.Hit_Points;
+		Energy_Points = other.Energy_Points;
+		Attack_damage = other.Attack_damage;
     }
 }
+
 
 ClapTrap::~ClapTrap(void)
 {
 	std::cout << "ClapTrap: Destructor called." << std::endl;
 }
 
-ClapTrap &ClapTrap::operator=(const ClapTrap &obj)
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
-    if (this != &obj)
+    if (this != &other)
     {
-       	Name = obj.Name;
-		Hit_Points = obj.Hit_Points;
-		Energy_Points = obj.Energy_Points;
-		Attack_damage = obj.Attack_damage;
+       	Name = other.Name;
+		Hit_Points = other.Hit_Points;
+		Energy_Points = other.Energy_Points;
+		Attack_damage = other.Attack_damage;
     }
     return (*this);
 }
 
-// Member functions
 
-void ClapTrap::attack(const std::string& target) const
+void ClapTrap::attack(const std::string& target)
 {
 	std::cout << "ClapTrap " << Name << " attacks " << target << ", causing " << Attack_damage << " points of damage!" << std::endl;
 }
@@ -47,7 +54,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	if (Hit_Points <= 0)
 	{
 		std::cout << "Stop! Stop! He's Already Dead!" << std::endl;
-		return;
+		return ;
 	}
 
 	if (static_cast<int>(amount) >= Hit_Points)
@@ -68,12 +75,12 @@ void ClapTrap::beRepaired(unsigned int amount)
 	{
 		std::cout << "No energy points available." << std::endl;
 		Energy_Points -= 1;
-		return;
+		return ;
 	}
 	if (Hit_Points <= 0)
 	{
 		std::cout << "No repair possible. No Hit_Points left." << std::endl;
-		return;
+		return ;
 	}
 	Hit_Points += amount;
 	Energy_Points -= 1;

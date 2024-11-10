@@ -14,12 +14,13 @@ class	ClapTrap
 		int			Attack_damage;
 		
 	public:
+		ClapTrap();
 		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap &other); // Copy constructor
+		ClapTrap(std::string name, unsigned int Energy);
+		ClapTrap(const ClapTrap &other);
 		~ClapTrap(void);
- 		ClapTrap &operator=(const ClapTrap &obj); // Assignment operator
+ 		ClapTrap &operator=(const ClapTrap &obj);
 
-		// Member functions
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);

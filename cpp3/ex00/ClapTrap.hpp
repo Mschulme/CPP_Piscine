@@ -14,13 +14,14 @@ class	ClapTrap
 		int			Attack_damage;
 
 	public:
-		// orthodox canoncial form
+		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &other);
 		~ClapTrap(void);
  		ClapTrap &operator=(const ClapTrap &obj);
-		// member functions 
-		void attack(const std::string& target) const;
+
+		 
+		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 };

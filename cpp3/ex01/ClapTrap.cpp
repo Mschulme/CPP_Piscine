@@ -2,7 +2,7 @@
 
 // Orthodox canonical form
 
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap(void)
 {
 
 }
