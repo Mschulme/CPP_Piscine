@@ -46,7 +46,9 @@ void	Harl::complain(std::string level)
 	for (int i = 0; i < 4; i++)
 	{
 		if (WarningLevels[i] == level)
+		{
 			(this->*Pointer[i])();
 			return;
+		}
 	}
 }
