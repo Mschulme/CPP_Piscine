@@ -18,8 +18,8 @@ class Fixed
 		Fixed(int const integer_input);
 		Fixed(float const float_input);
 
-		Fixed(const Fixed& other);
 		~Fixed();
+		Fixed(const Fixed& other);
 		Fixed& operator = (const Fixed& other);
 
 		int getRawBits(void) const;

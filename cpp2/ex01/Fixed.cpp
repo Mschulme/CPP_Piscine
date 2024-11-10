@@ -9,7 +9,7 @@ Fixed::Fixed(void)
 
 Fixed::Fixed(const int integer_input)
 {
-	std::cout << "Integer constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
 	//visualizeBitShift_integer(integer_input);
 	setRawBits(integer_input << number_of_fractional_bits);
 }
@@ -17,11 +17,12 @@ Fixed::Fixed(const int integer_input)
 Fixed::Fixed(const float float_input)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->setRawBits((int)roundf(float_input * pow(2, this->number_of_fractional_bits))); // Scale float by 2^8
+	this->setRawBits((int)roundf(float_input * pow(2, number_of_fractional_bits)));
 }
 
 Fixed::Fixed(const Fixed& other)
 {
+	std::cout << "Copy constructor called" << std::endl;
 	FixedPointNumber = other.FixedPointNumber;
 }
 
@@ -32,6 +33,7 @@ Fixed::~Fixed()
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		FixedPointNumber = other.FixedPointNumber;
@@ -61,8 +63,7 @@ int Fixed::toInt(void) const
 
 std::ostream& operator<<(std::ostream &os, Fixed const &other)
 {
-    os << other.toFloat();
-    return os;
+    return os << other.toFloat();
 }
 
 // Visualization of the bitshift 

@@ -2,7 +2,7 @@ NAME = FixedPointNumber
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp Fixed.cpp
 

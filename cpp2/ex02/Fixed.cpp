@@ -10,13 +10,13 @@ Fixed::Fixed(void)
 Fixed::Fixed(const int integer_input)
 {
 	std::cout << "Integer constructor called" << std::endl;
-	setRawBits(integer_input << number_of_fractional_bits);
+	setRawBits(integer_input * pow(2, number_of_fractional_bits));
 }
 
 Fixed::Fixed(const float float_input)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->setRawBits((int)roundf(float_input * (1 << this->number_of_fractional_bits)));
+	this->setRawBits((int)roundf(float_input * pow(2, number_of_fractional_bits)));
 }
 
 Fixed::Fixed(const Fixed& other)
@@ -101,42 +101,31 @@ Operator overloading
 
 std::ostream& operator<<(std::ostream &os, Fixed const &other)
 {
-	os << other.toFloat();
-	return os;
+	return os << other.toFloat();
 }
 
 // Arithmetic operators
 
 Fixed Fixed::operator+(Fixed const &other) const
-{
-	Fixed ret(this->toFloat() + other.toFloat());
-	return (ret);
+{ 
+	return Fixed(this->toFloat() + other.toFloat());
 }
+
 
 Fixed Fixed::operator-(Fixed const &other) const
 {
-	Fixed ret(this->toFloat() - other.toFloat());
-	return (ret);
+	return Fixed(this->toFloat() - other.toFloat());
 }
 
 Fixed Fixed::operator*( Fixed const &other) const
 {
-	Fixed ret(this->toFloat() * other.toFloat());
-	return (ret);
+	return Fixed(this->toFloat() * other.toFloat());
 }
 
 Fixed Fixed::operator/( Fixed const &other) const
 {
-	if (other.toFloat() == 0)
-	{
-		std::cerr << "Division by zero" << std::endl;
-		Fixed ret(69420);
-		return (ret);
-	}
-	Fixed ret(this->toFloat() / other.toFloat());
-	return (ret);
+	return Fixed(this->toFloat() / other.toFloat());
 }
-
 
 // Comparism operators
 

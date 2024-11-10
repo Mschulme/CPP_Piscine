@@ -2,11 +2,15 @@
 
 int main(void)
 {
+	std::cout << "a" << std::endl;
 	Fixed a;
+	std::cout << "b(10)" << std::endl;
 	Fixed const b(10);
+	std::cout << "c(42.42f)" << std::endl;
 	Fixed const c(42.42f);
+	std::cout << "d(b)" << std::endl;
 	Fixed const d(b);
-
+	std::cout << "Fixed(1234.4321f)" << std::endl;
 	a = Fixed(1234.4321f);
 
 	std::cout << "" << std::endl;
