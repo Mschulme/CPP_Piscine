@@ -15,13 +15,13 @@ ClapTrap::ClapTrap(std::string name): Name(name), Hit_Points(10), Energy_Points(
 
 ClapTrap::ClapTrap(ClapTrap const &other)
 {
-    if(this != &other)
-    {
-       	Name = other.Name;
+	if(this != &other)
+	{
+	   	Name = other.Name;
 		Hit_Points = other.Hit_Points;
 		Energy_Points = other.Energy_Points;
 		Attack_damage = other.Attack_damage;
-    }
+	}
 }
 
 
@@ -33,21 +33,34 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
-    if (this != &other)
-    {
-       	Name = other.Name;
+	if (this != &other)
+	{
+	 	Name = other.Name;
 		Hit_Points = other.Hit_Points;
 		Energy_Points = other.Energy_Points;
 		Attack_damage = other.Attack_damage;
-    }
-    return (*this);
+	}
+	return (*this);
 }
 
 
-void ClapTrap::attack(const std::string& target)
+void	ClapTrap::attack(const std::string& target)
 {
+	if (Energy_Points == 0)
+	{
+		std::cout << "ClapTrap " << Name << " does not have enough energy to attack" << std::endl;
+		return ;
+	}
+	if (Hit_Points == 0)
+	{
+		std::cout << "ClapTrap " << Name << " is dead and cannot attack!" << std::endl;
+		return ;
+	}
 	std::cout << "ClapTrap " << Name << " attacks " << target << ", causing " << Attack_damage << " points of damage!" << std::endl;
+	Energy_Points -= 1;
+	return ;
 }
+
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
@@ -68,6 +81,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		std::cout << "Hero took " << amount << " damage." << std::endl;
 	}
 }
+
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
