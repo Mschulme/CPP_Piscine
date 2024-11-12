@@ -61,7 +61,6 @@ int main(int argc, char **argv, char **envp)
 	{
 		argv += i + 1;
 		i = 0;
-        printf("%s \n", argv[i]);
 		while (argv[i] && (strcmp(argv[i], "|") && strcmp(argv[i], ";")))
 			i++;
 		if (i > 0)
