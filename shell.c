@@ -1,113 +1,94 @@
-#include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-
-void error_message(char *string)
+// Function to write an error message to stderr
+int err(char *str)
 {
-	int i = 0;
-
-	while (string[i] != 0)
-	{
-		write(2, &string[i], 1);
-		i++;
-	}
+    // Loop through each character in the string and write it to stderr
+    while (*str)
+        write(2, str++, 1);
 }
 
-
-int cd(char**argv, int i)
+// Function to change the current working directory
+int cd(char **argv, int i)
 {
-	if (i != 2)
-	{
-		error_message("error: cd: bad arguments\n");
-		return EXIT_FAILURE;
-	}
-	if (chdir(argv[1]) == -1)
-	{
-		error_message("error: cd: cannot change directory to ");
-		error_message(argv[1]);
-		error_message("\n");
-		return EXIT_FAILURE;
-
-	}
-	return EXIT_SUCCESS;
+    // If the number of arguments is not 2, print error and exit
+    if (i != 2)
+        return err("error: cd: bad arguments\n"), 1;
+    // If changing the directory fails, print error and exit
+    if (chdir(argv[1]) == -1)
+        return err("error: cd: cannot change directory to "), err(argv[1]), err("\n"), 1;
+    return 0;
 }
 
-
-void set_pipe( int *fd, int end)
+// Function to set pipe
+// end == 1 sets stdout to act as write end of our pipe
+// end == 0 sets stdin to act as read end of our pipe
+void set_pipe(int has_pipe, int *fd, int end)
 {
-	if (dup2(fd[end], end) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
-	{
-		error_message("error: fatal\n");
-		exit(EXIT_FAILURE);
-	}
+	if (has_pipe && (dup2(fd[end], end) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
+		err("error: fatal\n"), exit(1);
 }
 
-
-int execute_command(char *argv[], int i, char *envp[])
+// Function to execute a command
+int exec(char **argv, int i, char **envp)
 {
-	int pid;
-	int fd[2];
-	int status;
-	bool contains_pipe = false;
+    int has_pipe, fd[2], pid, status;
 
-	if (argv[i] != NULL && strcmp(argv[i], "|") == 0)
-		contains_pipe = true;
+    // Check if the command includes a pipe
+    has_pipe = argv[i] && !strcmp(argv[i], "|");
 
-	if (contains_pipe == false && strcmp(argv[0], "cd") == 0)
-		return cd(argv, i);
+    // If the command is 'cd', execute it
+    if (!has_pipe && !strcmp(*argv, "cd"))
+        return cd(argv, i);
 
-	if (contains_pipe == true && pipe(fd) == -1)
-	{
-		error_message("error: fatal\n");
-		exit(EXIT_FAILURE);
-	}
+    // If the command includes a pipe and creating the pipe fails, print error and exit
+    if (has_pipe && pipe(fd) == -1)
+        err("error: fatal\n"), exit(1);
 
-	if ((pid = fork()) == -1)
-	{
-		error_message("error: fatal\n");
-		exit(EXIT_FAILURE);
-	}
+    // Fork the process and if the fork fails, print error and exit
+    if ((pid = fork()) == -1)
+	err("error: fatal\n"), exit(1);
+    if (!pid)
+    {
+        argv[i] = 0;
+        // If the command includes a pipe, set write end of pipe, if it fail print error and exit
+        set_pipe(has_pipe, fd, 1);
+        // If the command is 'cd', execute it
+        if (!strcmp(*argv, "cd"))
+            exit(cd(argv, i));
+        // Execute the command
+        execve(*argv, argv, envp);
+        // If executing the command fails, print error and exit
+        err("error: cannot execute "), err(*argv), err("\n"), exit(1);
+    }
 
-	if (pid > 0)
-	{
-		argv[i] = 0;
-		if contains_pipe == true;
-			set_pipe(fd, 1);
-		if (strcmp(argv[0], "cd"))
-			exit(cd(argv, i));
-		execve(argv[0], argv, envp);
-		error_message("error: cannot execute ");
-		error_message(argv[0]);
-		error_message("\n");
-		exit(EXIT_FAILURE);
-	}
-	
-	waitpid(pid, &status, 0);
-	if contains_pipe == true:
-		set_pipe(fd, 0);
-
-	return (WIFEXITED(status) && WEXITSTATUS(status));
+    // Wait for the child process to finish
+    waitpid(pid, &status, 0);
+    // If the command includes a pipe, set write end of pipe, if it fail print error and exit
+    set_pipe(has_pipe, fd, 0);
+    // Return the exit status of the child process
+    return WIFEXITED(status) && WEXITSTATUS(status);
 }
 
-
-int main(int argc, char *argv[], char *envp[])
+int main(int, char **argv, char **envp)
 {
-	(void)argc;
-	int i = 0;
-	int status = 0;
+    int    i = 0, status = 0;
 
-	while (argv[i])
-	{
-		argv += i + 1;
-		i = 0;
-		while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
+    // Loop through each following argument
+    while (argv[i])
+    {
+        // Move the pointer to the next argument after the last delimeter / first argument
+    	argv += i + 1;
+    	i = 0;
+        // Loop through each argument until a pipe or semicolon is found
+    	while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
 			i++;
-		if (i > 0)
-			status = execute_command(argv, i, envp);
-	}
-	return (status);
+        // If there are arguments, execute them
+    	if (i)
+			status = exec(argv, i, envp);
+    }
+    return status;
 }
