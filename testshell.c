@@ -24,7 +24,7 @@ int cd(int i, char **argv)
         // Add error message
         return (EXIT_FAILURE);
     }
-    return (EXIT_SUCCESS)
+    return (EXIT_SUCCESS);
 }
 
 void set_pipe(int fd[], int pipe_into)
