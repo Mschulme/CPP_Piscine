@@ -30,5 +30,7 @@ int	main(void)
 	Hero.takeDamage(77);
 	Hero.takeDamage(77);
 
+    Hero.guardGate();
+
 	return (EXIT_SUCCESS);
 }

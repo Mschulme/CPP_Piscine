@@ -1,4 +1,4 @@
-NAME = ScavTrap
+NAME = FragTrap
 
 CXX = c++
 

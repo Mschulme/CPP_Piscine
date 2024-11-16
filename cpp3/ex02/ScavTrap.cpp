@@ -54,12 +54,12 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 
 void	ScavTrap::attack(const std::string& target)
 {
-	if (Energy_Points == 0)
+	if (Energy_Points <= 0)
     {
 		std::cout << "ScavTrap " << Name << " does not have enough energy to attack" << std::endl;
 		return ;
 	}
-	if (Hit_Points == 0)
+	if (Hit_Points <= 0)
     {
 		std::cout << "ScavTrap " << Name << " is dead and cannot attack!" << std::endl;
 		return ;

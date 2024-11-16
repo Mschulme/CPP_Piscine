@@ -13,6 +13,12 @@ ClapTrap::ClapTrap(std::string name): Name(name), Hit_Points(10), Energy_Points(
 }
 
 
+ClapTrap::~ClapTrap(void)
+{
+	std::cout << "ClapTrap: Destructor called." << std::endl;
+}
+
+
 ClapTrap::ClapTrap(ClapTrap const &other)
 {
 	if(this != &other)
@@ -22,12 +28,6 @@ ClapTrap::ClapTrap(ClapTrap const &other)
 		Energy_Points = other.Energy_Points;
 		Attack_damage = other.Attack_damage;
 	}
-}
-
-
-ClapTrap::~ClapTrap(void)
-{
-	std::cout << "ClapTrap: Destructor called." << std::endl;
 }
 
 
@@ -46,12 +46,12 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 
 void	ClapTrap::attack(const std::string& target)
 {
-	if (Energy_Points == 0)
+	if (Energy_Points <= 0)
 	{
 		std::cout << "ClapTrap " << Name << " does not have enough energy to attack" << std::endl;
 		return ;
 	}
-	if (Hit_Points == 0)
+	if (Hit_Points <= 0)
 	{
 		std::cout << "ClapTrap " << Name << " is dead and cannot attack!" << std::endl;
 		return ;

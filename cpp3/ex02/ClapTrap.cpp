@@ -46,12 +46,12 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 
 void	ClapTrap::attack(const std::string& target)
 {
-	if (Energy_Points == 0)
+	if (Energy_Points <= 0)
     {
 		std::cout << "ClapTrap " << Name << " does not have enough energy to attack" << std::endl;
 		return ;
 	}
-	if (Hit_Points == 0)
+	if (Hit_Points <= 0)
     {
 		std::cout << "ClapTrap " << Name << " is dead and cannot attack!" << std::endl;
 		return ;

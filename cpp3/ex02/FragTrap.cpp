@@ -52,14 +52,17 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 }
 
 
+// Member functions FragTrap
+
+
 void	FragTrap::attack(const std::string& target)
 {
-	if (Energy_Points == 0)
+	if (Energy_Points <= 0)
     {
 		std::cout << "FragTrap " << Name << " does not have enough energy to attack" << std::endl;
 		return ;
 	}
-	if (Hit_Points == 0)
+	if (Hit_Points <= 0)
     {
 		std::cout << "FragTrap " << Name << " is dead and cannot attack!" << std::endl;
 		return ;
