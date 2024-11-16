@@ -7,6 +7,7 @@ Fixed::Fixed(void)
 	std::cout << "Default constructor called" << std::endl;
 }
 
+
 Fixed::Fixed(const int integer_input)
 {
 	std::cout << "Int constructor called" << std::endl;
@@ -14,11 +15,13 @@ Fixed::Fixed(const int integer_input)
 	setRawBits(integer_input << number_of_fractional_bits);
 }
 
+
 Fixed::Fixed(const float float_input)
 {
 	std::cout << "Float constructor called" << std::endl;
 	this->setRawBits((int)roundf(float_input * pow(2, number_of_fractional_bits)));
 }
+
 
 Fixed::Fixed(const Fixed& other)
 {
@@ -26,10 +29,12 @@ Fixed::Fixed(const Fixed& other)
 	FixedPointNumber = other.FixedPointNumber;
 }
 
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
+
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
@@ -41,30 +46,36 @@ Fixed& Fixed::operator=(const Fixed& other)
 	return *this;
 }
 
+
 int Fixed::getRawBits(void) const
 {
 	return (FixedPointNumber);
 }
+
 
 void	Fixed::setRawBits(int const raw)
 {
 	FixedPointNumber = raw;
 }
 
+
 float Fixed::toFloat(void) const
 {
-	return (float)getRawBits() / (pow(2, number_of_fractional_bits));
+	return ((float)getRawBits() / (pow(2, number_of_fractional_bits)));
 }
+
 
 int Fixed::toInt(void) const
 {
 	return (getRawBits() >> number_of_fractional_bits);
 }
 
+
 std::ostream& operator<<(std::ostream &os, Fixed const &other)
 {
     return os << other.toFloat();
 }
+
 
 // Visualization of the bitshift 
 

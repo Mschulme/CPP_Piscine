@@ -2,16 +2,17 @@
 #define FIXED_HPP
 
 #include <cmath>
+#include <bitset>
 #include <string>
 #include <cstdlib>
 #include <iostream>
-#include <bitset>
 
 class Fixed
 {
 	private:
 		int FixedPointNumber;
 		static const int number_of_fractional_bits = 8;
+
 	public:
 		Fixed();
 		Fixed(int const integer_input);
