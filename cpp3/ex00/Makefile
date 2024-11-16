@@ -3,6 +3,7 @@ NAME = ClapTrap
 CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+
 SRC = main.cpp ClapTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
@@ -10,7 +11,10 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
@@ -21,3 +25,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+l
