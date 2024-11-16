@@ -19,7 +19,7 @@ Fixed::Fixed(const int integer_input)
 Fixed::Fixed(const float float_input)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->setRawBits((int)roundf(float_input * pow(2, number_of_fractional_bits)));
+	this->setRawBits((int)roundf(float_input * (1 << number_of_fractional_bits)));
 }
 
 
