@@ -1,8 +1,8 @@
 #ifndef WHATEVER_HPP
 #define WHATEVER_HPP
 
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 template <typename T>
 void swap(T& a, T& b)
@@ -12,22 +12,22 @@ void swap(T& a, T& b)
 	b = temp;
 }
 
+
 template <typename T>
 T min(const T& a, const T& b)
 {
 	if (a < b)
 		return a;
-	else
-		return b;
+	return b;
 }
+
 
 template <typename T>
 T max(const T& a, const T& b)
 {
 	if (a > b)
 		return a;
-	else
-		return b;
+	return b;
 }
 
 #endif
