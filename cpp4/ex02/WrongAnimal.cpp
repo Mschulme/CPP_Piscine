@@ -6,11 +6,11 @@ WrongAnimal::WrongAnimal()
     std::cout << "WrongAnimal class: Default constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(WrongAnimal const &other)
+WrongAnimal::WrongAnimal(WrongAnimal const &obj)
 {
-    if(this != &other)
+    if(this != &obj)
     {
-        this->type = other.type;
+        this->type = obj.type;
     }
 }
 
@@ -19,11 +19,11 @@ WrongAnimal::~WrongAnimal()
     std::cout << "WrongAnimal class: Destructor called" << std::endl;
 }
 
-WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &obj)
 {
-    if (this != &other)
+    if (this != &obj)
     {
-        this->type = other.type;
+        this->type = obj.type;
     }
     return (*this);
 }
