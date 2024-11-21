@@ -6,14 +6,12 @@ Cat::Cat() : brain (new Brain())
     std::cout << "Cat class: Default constructor called" << std::endl;
 }
 
-
-Cat::Cat(Cat const &obj) : Animal(obj), brain(new Brain(*obj.brain))
+Cat::Cat(Cat const &other) : Animal(other) ,brain(new Brain(*other.brain))
 {
-    if(this != &obj)
+    if(this != &other)
     {
-        this->type = obj.type;
+        this->type = other.type;
     }
-    std::cout << "Cat class: Copy constructor called" << std::endl;
 }
 
 Cat::~Cat()
@@ -22,16 +20,16 @@ Cat::~Cat()
     std::cout << "Cat class: Destructor called" << std::endl;
 }
 
-Cat &Cat::operator=(const Cat &obj)
+Cat &Cat::operator=(const Cat &other)
 {
-    if (this != &obj)
+    if (this != &other)
     {
-        this->type = obj.type;
+        this->type = other.type;
         if (brain != NULL)
         {
             delete brain;
         }
-        brain = new Brain(*obj.brain);
+        brain = new Brain(*other.brain);
     }
     std::cout << "Cat class: Assignment operator called" << std::endl;
     return (*this);
@@ -39,10 +37,10 @@ Cat &Cat::operator=(const Cat &obj)
 
 void Cat::makeSound(void) const
 {
-    std::cout << "Cat Barks" << std::endl;
+    std::cout << "Cat Meows" << std::endl;
 }
 
-std::string Cat::getType(void) const
+std::string Cat::getType(void) const 
 {
     return (type);
 }
