@@ -6,7 +6,8 @@ Cat::Cat() : brain (new Brain())
     std::cout << "Cat class: Default constructor called" << std::endl;
 }
 
-Cat::Cat(Cat const &other) : Animal(other) ,brain(new Brain(*other.brain))
+
+Cat::Cat(Cat const &other) : Animal(other), brain(new Brain(*other.brain))
 {
     if(this != &other)
     {
@@ -14,11 +15,13 @@ Cat::Cat(Cat const &other) : Animal(other) ,brain(new Brain(*other.brain))
     }
 }
 
+
 Cat::~Cat()
 {
     delete brain;
     std::cout << "Cat class: Destructor called" << std::endl;
 }
+
 
 Cat &Cat::operator=(const Cat &other)
 {
@@ -35,15 +38,18 @@ Cat &Cat::operator=(const Cat &other)
     return (*this);
 }
 
+
 void Cat::makeSound(void) const
 {
     std::cout << "Cat Meows" << std::endl;
 }
 
+
 std::string Cat::getType(void) const 
 {
     return (type);
 }
+
 
 void Cat::printBrain(void) const
 {

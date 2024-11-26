@@ -1,4 +1,4 @@
-NAME = Polymorphism_brain
+NAME = abstract_class
 
 CXX = c++
 

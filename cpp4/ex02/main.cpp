@@ -7,15 +7,14 @@
 
 int main(void)
 {
+    std::cout << "---Example for abstract class---" << std::endl;
+    Animal *cat = new Cat();
+    delete cat;
     /*
     std::cout << "Turn into abstract class" << std::endl;
     Animal *animal = new Animal();
     delete animal;
     */
-
-    std::cout << "---Example for abstract class---" << std::endl;
-    Animal *cat = new Cat();
-    delete cat;
 
     return (EXIT_SUCCESS);
 }
