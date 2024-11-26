@@ -13,21 +13,24 @@ int main(void)
     const Animal *j = new Dog();
     std::cout << "Construction Cat Class" << std::endl;
     const Animal *i = new Cat();
+
     std::cout << std::endl;
-    std::cout << "Type: " << j->getType() << " " << std::endl;
-    std::cout << "Type: " << i->getType() << " " << std::endl;
+    std::cout << "Type: " << j->getType() << std::endl;
+    std::cout << "Type: " << i->getType() << std::endl;
     std::cout << std::endl;
+
+    std::cout << "Animal sounds: " << std::endl;
+
     i->makeSound();
     j->makeSound();
     meta->makeSound();
     std::cout << std::endl;
-    delete meta;
     delete i;
     delete j;
-
-    std::cout << "---WrongCat and WrongAnimal---" << std::endl;
+    delete meta;
 
     // Functions without virtual keyword
+    std::cout << "\n" << "---WrongCat and WrongAnimal---" << std::endl;
 
     std::cout << "Construction WrongAnimal Class" << std::endl;
     const WrongAnimal *wrong_animal = new WrongAnimal();

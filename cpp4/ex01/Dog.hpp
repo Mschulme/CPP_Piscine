@@ -1,8 +1,6 @@
 #ifndef Dog_HPP
 #define Dog_HPP
 
-#include <cstdlib>
-#include <iostream>
 
 #include "Brain.hpp"
 #include "Animal.hpp"

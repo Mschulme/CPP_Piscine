@@ -13,7 +13,6 @@ int main(void)
     delete Cat_brain;
 
 
-
     std::cout << "\n" << "Test function for Ideas" << std::endl;
 
     const int numberOfAnimals = 10;
@@ -21,18 +20,13 @@ int main(void)
     Animal *animals[numberOfAnimals];
 
     for (size_t i = 0; i < numberOfAnimals / 2; ++i)
-    {
         animals[i] = new Dog();
-    }
+
     for (size_t i = numberOfAnimals / 2; i < numberOfAnimals; ++i)
-    {
         animals[i] = new Cat();
-    }
 
     for (int i = 0; i < numberOfAnimals; ++i)
-    {
         delete animals[i];
-    }
 
     // Test for deep copy
 
