@@ -9,8 +9,8 @@ class WrongAnimal
 {
     public:
         WrongAnimal();
-        WrongAnimal(WrongAnimal const &other);
         ~WrongAnimal();
+        WrongAnimal(WrongAnimal const &other);
         WrongAnimal &operator=(const WrongAnimal &other);
 
         void makeSound(void) const;

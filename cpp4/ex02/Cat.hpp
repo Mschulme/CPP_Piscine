@@ -11,15 +11,15 @@ class Cat : public Animal
 {
     public:
         Cat();
-        Cat(Cat const &other);
         ~Cat();
+        Cat(Cat const &other);
         Cat &operator=(const Cat &other);
 
         void makeSound(void) const;
         std::string getType(void) const;
         void printBrain(void) const;
 
-    protected:
+    private:
         std::string type;
         Brain *brain;
 };

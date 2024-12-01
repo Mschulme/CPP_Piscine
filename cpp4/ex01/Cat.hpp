@@ -16,7 +16,7 @@ class Cat : public Animal
         std::string getType(void) const;
         void printBrain(void) const;
 
-    protected:
+    private:
         std::string type;
         Brain *brain;
 };

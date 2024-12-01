@@ -12,6 +12,7 @@ Cat::Cat(Cat const &other) : Animal(other)
     {
         this->type = other.type;
     }
+    std::cout << "Cat class: Copy constructor called" << std::endl;
 }
 
 Cat::~Cat()
@@ -25,6 +26,7 @@ Cat &Cat::operator=(const Cat &other)
     {
         this->type = other.type;
     }
+    std::cout << "Cat class: Assignment operator called" << std::endl;
     return (*this);
 }
 

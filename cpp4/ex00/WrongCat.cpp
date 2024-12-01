@@ -14,6 +14,7 @@ WrongCat::WrongCat(WrongCat const &other) : WrongAnimal(other)
     {
         this->type = other.type;
     }
+    std::cout << "WrongCat class: Copy constructor called" << std::endl;
 }
 
 
@@ -29,6 +30,7 @@ WrongCat &WrongCat::operator=(const WrongCat &other)
     {
         this->type = other.type;
     }
+    std::cout << "WrongCat class: Assignment operator called" << std::endl;
     return (*this);
 }
 

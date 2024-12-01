@@ -12,6 +12,7 @@ WrongAnimal::WrongAnimal(WrongAnimal const &other)
     {
         this->type = other.type;
     }
+    std::cout << "WrongAnimal class: Copy constructor called" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal()
@@ -25,6 +26,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
     {
         this->type = other.type;
     }
+    std::cout << "WrongAnimal class: Assignment operator called" << std::endl;
     return (*this);
 }
 
