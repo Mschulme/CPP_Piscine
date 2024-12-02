@@ -9,8 +9,8 @@
 class Bureaucrat
 {
 	private:
-		std::string name_bureaucrat;
         int grade_bureaucrat;
+		std::string name_bureaucrat;
 
 	public:
 		Bureaucrat();
@@ -28,16 +28,13 @@ class Bureaucrat
 
 		class GradeTooLowException : public std::exception
 		{
-			public:
-				virtual const char *what() const throw();
+			virtual const char *what() const throw();
 		};
 
 		class GradeTooHighException : public std::exception
 		{
-			public:
-				virtual const char *what() const throw();
+			virtual const char *what() const throw();
 		};
-
 };
 
 std::ostream	&operator<<(std::ostream &o, Bureaucrat *a);

@@ -48,13 +48,13 @@ void testValidConstruction()
     try
     {
         Bureaucrat b1("Alice", 1);
-        std::cout << b1.getName() << " has grade " << b1.getGrade() << std::endl;
+        std::cout << &b1;
         
         Bureaucrat b2("Bob", 150);
-        std::cout << b2.getName() << " has grade " << b2.getGrade() << std::endl;
+        std::cout << &b2;        
         
         Bureaucrat b3("Charlie", 75);
-        std::cout << b3.getName() << " has grade " << b3.getGrade() << std::endl;
+        std::cout << &b3;
     }
     catch (std::exception &e)
     {
@@ -92,18 +92,19 @@ void testGradeIncrementDecrement()
     try
     {
         Bureaucrat b6("Frank", 2);
-        std::cout << b6.getName() << " has grade " << b6.getGrade() << std::endl;
+        std::cout << &b6;
 
         b6.increase_grade(1);
-        std::cout << b6.getName() << " has grade " << b6.getGrade() << std::endl;
+        std::cout << &b6;
 
         b6.decrease_grade(1);
-        std::cout << b6.getName() << " has grade " << b6.getGrade() << std::endl;
+        std::cout << &b6;
         
         b6.increase_grade(1);
-        std::cout << b6.getName() << " has grade " << b6.getGrade() << std::endl;
+        std::cout << &b6;
+
         b6.increase_grade(1);
-        std::cout << b6.getName() << " has grade " << b6.getGrade() << std::endl;
+        std::cout << &b6;
     }
     catch (std::exception &e)
     {
@@ -112,18 +113,17 @@ void testGradeIncrementDecrement()
     
     try
     {
-        Bureaucrat b7("Grace", 149);
-        std::cout << b7.getName() << " has grade " << b7.getGrade() << std::endl;
+        Bureaucrat b7("Grace", 99);
+        std::cout << &b7;
 
         b7.decrease_grade(1);
-        std::cout << b7.getName() << " has grade " << b7.getGrade() << std::endl;
+        std::cout << &b7;
 
         b7.decrease_grade(1);
-        std::cout << b7.getName() << " has grade " << b7.getGrade() << std::endl;
+        std::cout << &b7;
         
         b7.decrease_grade(1);
-        std::cout << b7.getName() << " has grade " << b7.getGrade() << std::endl;
-
+        std::cout << &b7;
     }
     catch (std::exception &e)
     {
