@@ -1,7 +1,7 @@
 #include <vector>
-#include <stdexcept>
 #include <iostream>
 #include <iterator>
+#include <stdexcept>
 
 class Span
 {
@@ -16,8 +16,10 @@ class Span
 		void addRandomNumbers(int count);
 
 		template<typename Iterator>
-		void addNumbers(Iterator begin, Iterator end) {
-			while (begin != end) {
+		void addNumbers(Iterator begin, Iterator end)
+		{
+			while (begin != end)
+			{
 				addNumber(*begin);
 				++begin;
 			}
@@ -25,7 +27,6 @@ class Span
 
 		int shortestSpan() const;
 		int longestSpan() const;
-
 };
 
 

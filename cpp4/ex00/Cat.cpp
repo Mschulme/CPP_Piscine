@@ -6,12 +6,13 @@ Cat::Cat()
     std::cout << "Cat class: Default constructor called" << std::endl;
 }
 
-Cat::Cat(Cat const &obj)
+Cat::Cat(Cat const &other) : Animal(other)
 {
-    if(this != &obj)
+    if(this != &other)
     {
-        this->type = obj.type;
+        this->type = other.type;
     }
+    std::cout << "Cat class: Copy constructor called" << std::endl;
 }
 
 Cat::~Cat()
@@ -19,12 +20,13 @@ Cat::~Cat()
     std::cout << "Cat class: Destructor called" << std::endl;
 }
 
-Cat &Cat::operator=(const Cat &obj)
+Cat &Cat::operator=(const Cat &other)
 {
-    if (this != &obj)
+    if (this != &other)
     {
-        this->type = obj.type;
+        this->type = other.type;
     }
+    std::cout << "Cat class: Assignment operator called" << std::endl;
     return (*this);
 }
 

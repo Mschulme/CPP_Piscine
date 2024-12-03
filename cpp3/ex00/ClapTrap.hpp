@@ -16,8 +16,8 @@ class	ClapTrap
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap &other);
 		~ClapTrap(void);
+		ClapTrap(const ClapTrap &other);
  		ClapTrap &operator=(const ClapTrap &obj);
 
 		void attack(const std::string& target);

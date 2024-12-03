@@ -30,10 +30,10 @@ class Fixed
 
 		// min/max overloaded functions
 
-		static Fixed & min(Fixed &other_1, Fixed &other_2);
-		static const Fixed & min(Fixed const &other_1, Fixed const &other_2);
-		static Fixed & max(Fixed &other_1, Fixed &other_2);
-		static const Fixed & max(Fixed const &other_1, Fixed const &other_2);
+		static Fixed &min(Fixed &other_1, Fixed &other_2);
+		static const Fixed &min(Fixed const &other_1, Fixed const &other_2);
+		static Fixed &max(Fixed &other_1, Fixed &other_2);
+		static const Fixed &max(Fixed const &other_1, Fixed const &other_2);
 
 		// Operator overloading
 
@@ -57,10 +57,8 @@ class Fixed
 		Fixed operator++(int);
 		Fixed operator--();
 		Fixed operator--(int);
-
 };
 
 std::ostream &operator<<(std::ostream &os, Fixed const &other);
-
 
 #endif

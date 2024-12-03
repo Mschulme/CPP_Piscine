@@ -9,9 +9,9 @@ class WrongAnimal
 {
     public:
         WrongAnimal();
-        WrongAnimal(WrongAnimal const &obj);
+        WrongAnimal(WrongAnimal const &other);
         ~WrongAnimal();
-        WrongAnimal &operator=(const WrongAnimal &obj);
+        WrongAnimal &operator=(const WrongAnimal &other);
 
         void makeSound(void) const;
         std::string getType(void) const;

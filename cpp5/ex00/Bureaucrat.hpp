@@ -2,41 +2,39 @@
 #define BUREAUCRAT_HPP
 
 #include <string>
-#include <exception>
 #include <cstdlib>
 #include <iostream>
+#include <exception>
 
 class Bureaucrat
 {
 	private:
-		std::string name_bureaucrat;
         int grade_bureaucrat;
+		std::string name_bureaucrat;
+
 	public:
-		// Orthodox canonical form
+		Bureaucrat();
 		Bureaucrat(const std::string &str, int grade);
 		~Bureaucrat(void);
 
-		// Increase and decrease function
+		Bureaucrat(const Bureaucrat &other);
+		Bureaucrat &operator=(const Bureaucrat &other);
+
         void increase_grade(int grade_change);
         void decrease_grade(int grade_change);
 
-		// Getter functions
-		std::string getName(void);
 		int getGrade(void);
+		std::string getName(void);
 
-		// Classes for the TooLow and TooHigh Exception.
 		class GradeTooLowException : public std::exception
 		{
-		public:
 			virtual const char *what() const throw();
 		};
 
 		class GradeTooHighException : public std::exception
 		{
-		public:
 			virtual const char *what() const throw();
 		};
-
 };
 
 std::ostream	&operator<<(std::ostream &o, Bureaucrat *a);

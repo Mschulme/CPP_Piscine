@@ -9,13 +9,13 @@ Fixed::Fixed(void)
 Fixed::Fixed(const int integer_input)
 {
     std::cout << "Integer constructor called" << std::endl;
-    setRawBits(integer_input * pow(2, number_of_fractional_bits));
+    setRawBits(integer_input * (1 << number_of_fractional_bits));
 }
 
 Fixed::Fixed(const float float_input)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->setRawBits((int)roundf(float_input * pow(2, number_of_fractional_bits)));
+    this->setRawBits((int)roundf(float_input * (1 << number_of_fractional_bits)));
 }
 
 Fixed::Fixed(const Fixed& other)
@@ -62,16 +62,18 @@ int Fixed::toInt(void) const
     return (getRawBits() >> number_of_fractional_bits);
 }
 
+
 // Minimum/Maximum functions
 
-Fixed & Fixed::min(Fixed &other_1, Fixed &other_2)
+
+Fixed &Fixed::min(Fixed &other_1, Fixed &other_2)
 {
     if (other_1.getRawBits() < other_2.getRawBits())
         return (other_1);
     return (other_2);
 }
 
-const Fixed & Fixed::min(Fixed const &other_1, Fixed const &other_2)
+const Fixed &Fixed::min(Fixed const &other_1, Fixed const &other_2)
 {
     if (other_1.getRawBits() < other_2.getRawBits())
         return (other_1);
@@ -85,7 +87,7 @@ Fixed &Fixed::max(Fixed &other_1, Fixed &other_2)
     return (other_2);
 }
 
-const Fixed & Fixed::max(Fixed const &other_1, Fixed const &other_2)
+const Fixed &Fixed::max(Fixed const &other_1, Fixed const &other_2)
 {
     if (other_1.getRawBits() > other_2.getRawBits())
         return (other_1);
@@ -103,7 +105,9 @@ std::ostream& operator<<(std::ostream &os, Fixed const &other)
     return os << other.toFloat();
 }
 
+
 // Arithmetic operators
+
 
 Fixed Fixed::operator+(Fixed const &other) const
 { 
@@ -130,7 +134,9 @@ Fixed Fixed::operator/(Fixed const &other) const
     return Fixed(this->toFloat() / other.toFloat());
 }
 
+
 // Comparison operators
+
 
 bool Fixed::operator>(Fixed const &other) const
 {
