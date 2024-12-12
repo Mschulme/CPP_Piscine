@@ -66,8 +66,9 @@ void testSignExecution()
 	{
 		Bureaucrat Merlin("Arthur", 65);
 		Form Form_3("Form_3", 100, 50);
-		std::cout << "Check if Form is signed: " << (Form_3.getIsSigned() ? "true" : "false") << std::endl;
+		std::cout << &Form_3;
 		Merlin.signForm(Form_3);
+		std::cout << &Form_3;
 		std::cout << "Check if Form is signed: " << (Form_3.getIsSigned() ? "true" : "false") << std::endl;
 	}
 	catch (std::exception &e)
