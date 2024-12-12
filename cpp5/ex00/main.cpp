@@ -113,7 +113,7 @@ void testGradeIncrementDecrement()
     
     try
     {
-        Bureaucrat b7("Grace", 99);
+        Bureaucrat b7("Grace", 148);
         std::cout << &b7;
 
         b7.decrease_grade(1);
@@ -129,5 +129,4 @@ void testGradeIncrementDecrement()
     {
         std::cerr << e.what() << std::endl;
     }
-    std::cout << std::endl;
 }

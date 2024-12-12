@@ -90,6 +90,7 @@ int Bureaucrat::getGrade(void)
     return (grade_bureaucrat);
 }
 
+
 const char *Bureaucrat::GradeTooLowException::what(void) const throw()
 {
     return ("The Grade is too low. Please enter a value between 1 and 150.");

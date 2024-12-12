@@ -8,6 +8,8 @@
 #include <iostream>
 #include <exception>
 
+class Form;
+
 class Bureaucrat
 {
 	private:
@@ -29,7 +31,6 @@ class Bureaucrat
 		std::string getName(void);
 
 		void signForm(Form &form);
-
 
 		class GradeTooLowException : public std::exception
 		{
