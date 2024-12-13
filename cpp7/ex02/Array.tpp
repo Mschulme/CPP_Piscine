@@ -1,29 +1,64 @@
 #ifndef ARRAY_TPP
 #define ARRAY_TPP
 
-#include <cstdlib>
-#include <iostream>
-#include <stdexcept>
+template <class T>
+Array<T>::Array() : size_array(0), data(0) {}
 
-template <typename T>
-class Array
+template <class T>
+Array<T>::Array(unsigned int size) : size_array(size), data(0)
 {
-	private:
-		unsigned int size_array;
-		T* data = NULL;
-	
-	public:
-		// orthodox canonical form
-		Array(void);
-		Array(unsigned int size);
-		Array(const Array& other);
-		~Array(void);
-   	 	T	&operator=(const Array<T> &other);
+    data = new T[size_array]();
+}
 
-		// member functions
-		T	&operator[](unsigned int i) const;
-		unsigned int	size(void) const; 
+template <class T>
+Array<T>::Array(const Array<T> &other) : size_array(other.size_array), data(0)
+{
+    data = new T[size_array];
+    for (unsigned int i = 0; i < size_array; ++i)
+        data[i] = other.data[i];
+}
 
-};
+template <class T>
+Array<T>::~Array()
+{
+    delete[] data;
+}
 
-#endif
+template <class T>
+Array<T>& Array<T>::operator=(const Array<T> &other)
+{
+    if (this != &other) {
+        T* newData = new T[other.size_array];
+        for (unsigned int i = 0; i < other.size_array; ++i)
+            newData[i] = other.data[i];
+
+        delete[] data;
+        data = newData;
+        size_array = other.size_array;
+    }
+    return *this;
+}
+
+template <class T>
+T& Array<T>::operator[](unsigned int index)
+{
+    if (index >= size_array)
+        throw std::out_of_range("Index out of range");
+    return data[index];
+}
+
+template <class T>
+const T& Array<T>::operator[](unsigned int index) const
+{
+    if (index >= size_array)
+        throw std::out_of_range("Index out of range");
+    return data[index];
+}
+
+template <class T>
+unsigned int Array<T>::size() const
+{
+    return size_array;
+}
+
+#endif // ARRAY_TPP
