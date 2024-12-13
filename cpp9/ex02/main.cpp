@@ -1,10 +1,10 @@
 #include "PmergeMe.hpp"
-#include <ctime>     // for clock_t, clock(), CLOCKS_PER_SEC
-#include <cmath>     // for log2, etc.
+#include <ctime>
+#include <cmath>
 #include <vector>
 #include <deque>
 #include <iostream>
-#include <stdexcept> // for std::runtime_error
+#include <stdexcept>
 
 int counter;
 
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     }
     catch (const std::runtime_error &e)
     {
-        std::cerr << "Error: " << e.what() << "\n";
+        std::cerr << "Error: " << e.what() << std::endl;
         return EXIT_FAILURE;
     }
 
