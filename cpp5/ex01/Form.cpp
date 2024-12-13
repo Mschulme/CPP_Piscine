@@ -25,7 +25,7 @@ Form::~Form()
 }
 
 
-Form::Form(const Form &other): name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute)
+Form::Form(const Form &other) : name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute)
 {
     std::cout << "Copy constructor called" << std::endl;
 }
@@ -43,7 +43,7 @@ Form &Form::operator=(const Form &other)
 }
 
 
-void Form::beSigned(Bureaucrat &bureaucrat)
+void Form::beSigned(const Bureaucrat &bureaucrat)
 { 
     if (bureaucrat.getGrade() > gradeToSign) 
     { 
@@ -52,25 +52,26 @@ void Form::beSigned(Bureaucrat &bureaucrat)
     isSigned = true;
 }
 
-std::string Form::getName(void)
+
+std::string Form::getName(void) const
 {
     return name;
 } 
 
 
-bool Form::getIsSigned(void)
+bool Form::getIsSigned(void) const 
 {
     return isSigned;
 } 
 
 
-int Form::getGradeToSign(void)
+int Form::getGradeToSign(void) const 
 {
     return gradeToSign;
 } 
 
 
-int Form::getGradeToExecute(void)
+int Form::getGradeToExecute(void) const
 { 
     return gradeToExecute;
 }
@@ -78,18 +79,22 @@ int Form::getGradeToExecute(void)
 
 const char *Form::GradeTooLowException::what(void) const throw()
 {
-    return ("The Grade is too low to sign / execute. Please enter a value between 1 and 150.");
+    return ("Grade too low. Valid range is 1 to 150.");
 }
 
 
 const char *Form::GradeTooHighException::what(void) const throw()
 {
-    return ("The Grade is too high to sign / execute. Please enter a value between 1 and 150.");
+    return ("Grade too high. Valid range is 1 to 150.");
 }
 
 
-std::ostream	&operator<<(std::ostream &o, Form *a)
+std::ostream &operator<<(std::ostream &o, const Form &a)
 {
-	o << "Name: " << a->getName() << " is signed: " <<( a->getIsSigned() ? "true" : "false") << " Grade to sign: " << a->getGradeToSign() << " Grade to execute: " << a->getGradeToExecute()  << std::endl;
-	return (o);
+    o << "Name: " << a.getName() 
+      << " | Signed: " << (a.getIsSigned() ? "true" : "false") 
+      << " | Grade to sign: " << a.getGradeToSign() 
+      << " | Grade to execute: " << a.getGradeToExecute()
+      << std::endl;
+    return o;
 }

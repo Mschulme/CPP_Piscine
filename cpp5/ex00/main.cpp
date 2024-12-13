@@ -48,13 +48,13 @@ void testValidConstruction()
     try
     {
         Bureaucrat b1("Alice", 1);
-        std::cout << &b1;
+        std::cout << b1;
         
         Bureaucrat b2("Bob", 150);
-        std::cout << &b2;        
+        std::cout << b2;        
         
         Bureaucrat b3("Charlie", 75);
-        std::cout << &b3;
+        std::cout << b3;
     }
     catch (std::exception &e)
     {
@@ -92,19 +92,19 @@ void testGradeIncrementDecrement()
     try
     {
         Bureaucrat b6("Frank", 2);
-        std::cout << &b6;
+        std::cout << b6;
 
         b6.increase_grade(1);
-        std::cout << &b6;
+        std::cout << b6;
 
         b6.decrease_grade(1);
-        std::cout << &b6;
+        std::cout << b6;
         
         b6.increase_grade(1);
-        std::cout << &b6;
+        std::cout << b6;
 
         b6.increase_grade(1);
-        std::cout << &b6;
+        std::cout << b6;
     }
     catch (std::exception &e)
     {
@@ -114,16 +114,16 @@ void testGradeIncrementDecrement()
     try
     {
         Bureaucrat b7("Grace", 148);
-        std::cout << &b7;
+        std::cout << b7;
 
         b7.decrease_grade(1);
-        std::cout << &b7;
+        std::cout << b7;
 
         b7.decrease_grade(1);
-        std::cout << &b7;
+        std::cout << b7;
         
         b7.decrease_grade(1);
-        std::cout << &b7;
+        std::cout << b7;
     }
     catch (std::exception &e)
     {

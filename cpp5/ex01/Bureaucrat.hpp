@@ -13,8 +13,8 @@ class Form;
 class Bureaucrat
 {
 	private:
-        int grade_bureaucrat;
 		std::string name_bureaucrat;
+        int grade_bureaucrat;
 
 	public:
 		Bureaucrat();
@@ -27,8 +27,8 @@ class Bureaucrat
         void increase_grade(int grade_change);
         void decrease_grade(int grade_change);
 
-		int getGrade(void);
-		std::string getName(void);
+		int getGrade(void) const ;
+		std::string getName(void) const;
 
 		void signForm(Form &form);
 
@@ -43,6 +43,6 @@ class Bureaucrat
 		};
 };
 
-std::ostream	&operator<<(std::ostream &o, Bureaucrat *a);
+std::ostream	&operator<<(std::ostream &o, const Bureaucrat &a);
 
 #endif

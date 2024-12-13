@@ -26,12 +26,12 @@ class Form
 		Form(const Form &other);
 		Form &operator=(const Form &other);
 
-		bool getIsSigned(void);
-		int getGradeToSign(void);
-		std::string getName(void);
-		int getGradeToExecute(void);
+		bool getIsSigned(void) const;
+		int getGradeToSign(void) const;
+		std::string getName(void) const;
+		int getGradeToExecute(void) const;
 
-		void beSigned(Bureaucrat &bureaucrat);
+		void beSigned(const Bureaucrat &bureaucrat);
 
 	class GradeTooLowException : public std::exception
 	{
@@ -44,6 +44,6 @@ class Form
 	};
 };
 
-std::ostream	&operator<<(std::ostream &o, Form *a);
+std::ostream	&operator<<(std::ostream &o, const Form &a);
 
 #endif
