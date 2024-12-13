@@ -1,40 +1,51 @@
 #include "iter.hpp"
 
-int	increment(int x)
-{
-	return (x + 5);
-}
 
 int power(int x)
 {
 	return (x * x);
 }
 
-int main()
+
+int main(void)
 {
-	size_t number_of_elements = 10;
+	try
+	{
+		size_t number_of_elements = 10;
+		std::vector<int> array_int(number_of_elements);
+		for (size_t i = 0; i < number_of_elements; i++)
+		{
+			array_int[i] = static_cast<int>(i);
+		}
 
-	int* array_int = new int[10];
-	for (size_t i = 0; i < 10; i++)
-		array_int[i] = i;
+		std::cout << "Input data: ";
+		for (size_t i = 0; i < number_of_elements; ++i)
+		{
+			std::cout << array_int[i] << ' ';
+		}
+		std::cout << std::endl;
 
+		// Apply power function
+		std::cout << "Applying power function (square each element):" << std::endl;
+		applyFunction(&array_int[0], number_of_elements, power);
 
-	std::cout << "Input data: ";
-	for (size_t i = 0; i < number_of_elements; ++i)
-		std::cout << array_int[i] << ' ';
-	std::cout << std::endl;
-
-
-	applyFunction(array_int, number_of_elements, increment);
-	for (size_t i = 0; i < number_of_elements; ++i)
-		std::cout << array_int[i] << ' ';
-	std::cout << std::endl;
-
-
-	applyFunction(array_int, number_of_elements, power);
-	for (size_t i = 0; i < number_of_elements; ++i)
-		std::cout << array_int[i] << ' ';
-	std::cout << std::endl;
+		std::cout << "After power: ";
+		for (size_t i = 0; i < number_of_elements; ++i)
+		{
+			std::cout << array_int[i] << ' ';
+		}
+		std::cout << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "An exception occurred: " << e.what() << std::endl;
+		return EXIT_FAILURE;
+	}
+	catch (...)
+	{
+		std::cerr <<  "An unknown exception occurred." << std::endl;
+		return EXIT_FAILURE;
+	}
 
 	return (EXIT_SUCCESS);
 }

@@ -1,8 +1,11 @@
 #ifndef ITER_HPP
 #define ITER_HPP
 
+#include <vector>
 #include <cstdlib>
 #include <iostream>
+#include <stdexcept>
+
 
 template <typename T, typename Function>
 void applyFunction(T array[], size_t size, Function f)
