@@ -1,8 +1,8 @@
 #ifndef ARRAY_TPP
 #define ARRAY_TPP
 
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 #include <stdexcept>
 
 template <typename T>
