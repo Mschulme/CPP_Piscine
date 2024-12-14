@@ -43,7 +43,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
     {
         throw GradeTooLowException();
     }
-    createShrubberyFile;
+    ShrubberyCreationForm::createShrubberyFile();
 }
 
 

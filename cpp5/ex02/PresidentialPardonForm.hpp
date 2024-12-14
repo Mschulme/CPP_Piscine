@@ -8,6 +8,7 @@ class PresidentialPardonForm : public AForm
 {
     private: 
         std::string target;
+        void announcePardon(void) const; 
 
     public:
         PresidentialPardonForm(const std::string &target);
@@ -17,7 +18,6 @@ class PresidentialPardonForm : public AForm
 
         virtual void execute(Bureaucrat const &executor) const;
 
-        void createShrubberyFile(void) const;
 };
 
 #endif

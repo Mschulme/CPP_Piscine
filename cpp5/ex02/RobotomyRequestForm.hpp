@@ -1,6 +1,8 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
+#include <ctime>
+#include <cstdlib>
 #include <fstream>
 #include "AForm.hpp"
 
@@ -16,8 +18,6 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 
         virtual void execute(Bureaucrat const &executor) const;
-
-        void createShrubberyFile(void) const;
 };
 
 #endif
