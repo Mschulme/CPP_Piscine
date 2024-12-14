@@ -35,14 +35,15 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    if (getIsSigned() && executor.getGrade() <= getGradeToExecute())
+    if(getIsSigned() == false)
     {
-        createShrubberyFile();
+        throw FormNotSignedException();
     }
-    else
+    if (executor.getGrade() > getGradeToExecute())
     {
         throw GradeTooLowException();
     }
+    createShrubberyFile;
 }
 
 

@@ -6,7 +6,8 @@ AForm::AForm(void) : name("default"), isSigned(false), gradeToSign(42), gradeToE
 }
 
 
-AForm::AForm(const std::string &name, int gradeToSign, int gradeToExecute) : name(name), isSigned(false), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
+AForm::AForm(const std::string &name, int gradeToSign, int gradeToExecute)
+    : name(name), isSigned(false), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
 {
     if (gradeToSign < 1)
         throw AForm::GradeTooHighException();
@@ -25,7 +26,8 @@ AForm::~AForm()
 }
 
 
-AForm::AForm(const AForm &other): name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute)
+AForm::AForm(const AForm &other)
+    : name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute)
 {
     std::cout << "Copy constructor called" << std::endl;
 }
@@ -84,18 +86,28 @@ void AForm::execute(Bureaucrat const &executor) const
 
 const char *AForm::GradeTooLowException::what(void) const throw()
 {
-    return ("The Grade is too low to sign / execute. Please enter a value between 1 and 150.");
+    return ("Grade too low. Valid range is 1 to 150.");
 }
 
 
 const char *AForm::GradeTooHighException::what(void) const throw()
 {
-    return ("The Grade is too high to sign / execute. Please enter a value between 1 and 150.");
+    return ("Grade too high. Valid range is 1 to 150.");
 }
 
 
-std::ostream	&operator<<(std::ostream &o, AForm *a)
+const char *AForm::FormNotSignedException::what(void) const throw()
 {
-	o << "Name: " << a->getName() << " is signed: " <<( a->getIsSigned() ? "true" : "false") << " Grade to sign: " << a->getGradeToSign() << " Grade to execute: " << a->getGradeToExecute()  << std::endl;
-	return (o);
+    return ("Form is not signed.");
+}
+
+
+std::ostream &operator<<(std::ostream &o, const AForm &a)
+{
+    o << "Name: " << a.getName() 
+      << " | Signed: " << (a.getIsSigned() ? "true" : "false") 
+      << " | Grade to sign: " << a.getGradeToSign() 
+      << " | Grade to execute: " << a.getGradeToExecute()
+      << std::endl;
+    return o;
 }
