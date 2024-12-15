@@ -149,26 +149,26 @@ float BitcoinExchange::getRateForDate(const std::string &date, bool &found) cons
     std::list<std::pair<std::string, float> >::const_iterator it = exchangeRates.begin();
     std::list<std::pair<std::string, float> >::const_iterator best = exchangeRates.end();
 
-    for (; it != exchangeRates.end(); ++it) {
+    for (; it != exchangeRates.end(); ++it)
+    {
         const std::string &d = it->first;
         if (d == date)
         {
-            // Exact match
             found = true;
             return it->second;
         }
-        if (d <= date) {
-            // Update best candidate
+        if (d <= date)
+        {
             best = it;
-        } else {
-            // We've found a date greater than 'date'
-            // No need to continue since list is sorted
+        }
+        else
+        {
             break;
         }
     }
 
-    if (best == exchangeRates.end()) {
-        // No date <= requested date
+    if (best == exchangeRates.end())
+    {
         found = false;
         return 0.0f;
     }
