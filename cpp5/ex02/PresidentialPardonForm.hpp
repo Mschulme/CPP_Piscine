@@ -8,7 +8,6 @@ class PresidentialPardonForm : public AForm
 {
     private: 
         std::string target;
-        void announcePardon(void) const; 
 
     public:
         PresidentialPardonForm(const std::string &target);

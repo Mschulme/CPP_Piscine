@@ -33,15 +33,15 @@ class Form
 
 		void beSigned(const Bureaucrat &bureaucrat);
 
-	class GradeTooLowException : public std::exception
-	{
-		virtual const char *what() const throw();
-	};
+		class GradeTooLowException : public std::exception
+		{
+			virtual const char *what() const throw();
+		};
 
-	class GradeTooHighException : public std::exception
-	{
-		virtual const char *what() const throw();
-	};
+		class GradeTooHighException : public std::exception
+		{
+			virtual const char *what() const throw();
+		};
 };
 
 std::ostream	&operator<<(std::ostream &o, const Form &a);

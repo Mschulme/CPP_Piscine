@@ -38,7 +38,7 @@ void testConstruction()
 		Form Form_1("Form_1", 50, 50);
 		std::cout << Form_1;
 
-		Form Form_2("Form_2", -50, 50);
+		Form Form_2("Form_2", 200, 50);
 		std::cout << Form_2;
 	}
 	catch (std::exception &e)
@@ -53,7 +53,7 @@ void testSignExecution()
 	std::cout << "Testing invalid sign form:" << std::endl;
 	try
 	{
-		Bureaucrat Merlin("Arthur", 65);
+		Bureaucrat Merlin("Merlin", 65);
 		Form Form_3("Form_3", 50, 50);
 		Merlin.signForm(Form_3);
 	}
@@ -64,10 +64,11 @@ void testSignExecution()
 	std::cout << "---" << "\n" << "Testing valid sign form:" << std::endl;
 	try
 	{
-		Bureaucrat Merlin("Arthur", 65);
+		Bureaucrat Arthur("Arthur", 65);
+		std::cout << Arthur;
 		Form Form_3("Form_3", 100, 50);
 		std::cout << Form_3;
-		Merlin.signForm(Form_3);
+		Arthur.signForm(Form_3);
 		std::cout << Form_3;
 		std::cout << "Check if Form is signed: " << (Form_3.getIsSigned() ? "true" : "false") << std::endl;
 	}

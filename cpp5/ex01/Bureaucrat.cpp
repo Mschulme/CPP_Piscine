@@ -86,7 +86,6 @@ void Bureaucrat::signForm(Form &form)
     {
         std::cout << name_bureaucrat << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
     } 
-    
 }
 
 

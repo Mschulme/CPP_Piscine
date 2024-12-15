@@ -25,10 +25,9 @@ Bureaucrat::~Bureaucrat()
 
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other)
+    : name_bureaucrat(other.name_bureaucrat), grade_bureaucrat(other.grade_bureaucrat)
 {
     std::cout << "Copy constructor called" << std::endl;
-    name_bureaucrat = other.name_bureaucrat;
-    grade_bureaucrat = other.grade_bureaucrat;
 }
 
 
