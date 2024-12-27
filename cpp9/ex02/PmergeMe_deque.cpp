@@ -1,7 +1,11 @@
 #include "PmergeMe.hpp"
 
 
-std::deque<int>::iterator lower_bound_deque(std::deque<int>& vec, int start, int end, int target)
+static const int GROUP_SIZES[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922, 21846, 43690, 87382, 174762, 349526, 699050, 1398102};
+static const size_t GROUP_COUNT = sizeof(GROUP_SIZES)/sizeof(GROUP_SIZES[0]);
+
+
+std::deque<int>::iterator lower_bound(std::deque<int>& vec, int start, int end, int target)
 {
 	while (start < end)
 	{
@@ -20,42 +24,85 @@ std::deque<int>::iterator lower_bound_deque(std::deque<int>& vec, int start, int
 }
 
 
-std::deque<int> create_sorted_list_deque(std::deque<std::deque<int> >& pairs, int straggler, bool hasStraggler)
+std::deque<int> create_sorted_list(std::deque<std::deque<int> >& pairs, int straggler, bool hasStraggler)
 {
-	std::deque<int> pend_chain;
-	std::deque<int> main_chain;
+    std::deque<int> pend_chain;
+    std::deque<int> main_chain;
 
-	for (unsigned int i=0; i<pairs.size(); ++i)
-	{
-		pend_chain.push_back(pairs[i][0]);
-		main_chain.push_back(pairs[i][1]);
-	}
-	main_chain.insert(main_chain.begin(), pend_chain[0]);
+    for (unsigned int i = 0; i < pairs.size(); ++i)
+    {
+        pend_chain.push_back(pairs[i][0]);
+        main_chain.push_back(pairs[i][1]);
+    }
 
-	for (unsigned int index = 1; index < pend_chain.size(); ++index)
-	{
-		std::deque<int>::iterator insertion_point;
-		int item = pend_chain[index];
+    main_chain.insert(main_chain.begin(), pend_chain[0]);
+    std::deque<bool> inserted(pend_chain.size(), false);
+    inserted[0] = true;
 
-		int upper_bound_insert_position = 0;
-		while (pairs[index][1] != main_chain[upper_bound_insert_position])
-			upper_bound_insert_position += 1;
+    std::deque<int> uninserted;
+    for (size_t i = 1; i < pend_chain.size(); ++i)
+    {
+        if (!inserted[i])
+        {
+            uninserted.push_back((int)i);
+        }
+    }
 
-		insertion_point = lower_bound_deque(main_chain, 0, upper_bound_insert_position, item);
-		main_chain.insert(insertion_point, item);
-	}
+    std::deque< std::deque<int> > groups; 
+    {
+        size_t start = 0;
+        size_t remain = uninserted.size();
+        size_t g_idx = 0;
+        while (remain > 0 && g_idx < GROUP_COUNT)
+        {
+            int g_size = GROUP_SIZES[g_idx];
+            if ((size_t)g_size > remain)
+                g_size = (int)remain;
 
-	if (hasStraggler == true)
-	{
-		std::deque<int>::iterator insertion_point;
-		insertion_point = lower_bound_deque(main_chain, 0, main_chain.size(), straggler);
-		main_chain.insert(insertion_point, straggler);
-	}
-	return (main_chain);
+            std::deque<int> group;
+            for (int k = 0; k < g_size; ++k)
+            {
+                group.push_back(uninserted[start + k]);
+            }
+            groups.push_back(group);
+            start += g_size;
+            remain -= g_size;
+            g_idx++;
+        }
+    }
+    for (size_t i = 0; i < groups.size(); ++i)
+    {
+        std::reverse(groups[i].begin(), groups[i].end());
+    }
+
+	size_t upper_bound = 0;
+    for (size_t g = 0; g < groups.size(); ++g)
+    {
+		upper_bound = pow(2, g + 2) - 1;
+        for (size_t el = 0; el < groups[g].size(); ++el)
+        {
+            int idx = groups[g][el];
+            int item = pend_chain[(size_t)idx];
+
+			if (upper_bound > main_chain.size())
+				upper_bound = main_chain.size();
+            std::deque<int>::iterator insertion_point = lower_bound(main_chain, 0, upper_bound, item);
+            main_chain.insert(insertion_point, item);
+            inserted[(size_t)idx] = true;
+        }
+    }
+
+    if (hasStraggler == true)
+    {
+        std::deque<int>::iterator insertion_point = lower_bound(main_chain, 0, (int)main_chain.size(), straggler);
+        main_chain.insert(insertion_point, straggler);
+    }
+
+    return (main_chain);
 }
 
 
-std::deque<int> extract_larger_values_deque(std::deque<std::deque<int> >& pairs)
+std::deque<int> extract_larger_values(std::deque<std::deque<int> >& pairs)
 {
 	std::deque<int>  array_larger_values;
 	for (unsigned int i = 0; i < pairs.size(); ++i)
@@ -64,7 +111,7 @@ std::deque<int> extract_larger_values_deque(std::deque<std::deque<int> >& pairs)
 }
 
 
-std::deque<std::deque<int> > created_sorted_pairs_deque(std::deque<int> &A)
+std::deque<std::deque<int> > created_sorted_pairs(std::deque<int> &A)
 {
 	std::deque<std::deque<int> > split_array;
 	for (std::deque<int>::size_type i = 0; i < A.size(); i += 2)
@@ -111,23 +158,23 @@ std::deque<int> merge_insertion_sort_deque(std::deque<int> &A)
 			A.pop_back();
 		}
 
-		std::deque<std::deque<int> > pairs = created_sorted_pairs_deque(A);
+		std::deque<std::deque<int> > pairs = created_sorted_pairs(A);
 
 		std::map<int, int> hashmap;
 		for (unsigned int i = 0; i < pairs.size(); ++i)
 			hashmap[pairs[i][1]] = pairs[i][0];
 
-		std::deque<int> array_larger_values = extract_larger_values_deque(pairs);
-		std::deque<int> return_vector;
+		std::deque<int> array_larger_values = extract_larger_values(pairs);
+		std::deque<int> return_deque;
 		if (array_larger_values.size() >= 1)
 		{
-			return_vector = merge_insertion_sort_deque(array_larger_values);
+			return_deque = merge_insertion_sort_deque(array_larger_values);
 			for (unsigned int i = 0; i < pairs.size(); ++i)
 			{
-				pairs[i][0] = hashmap[return_vector[i]];
-				pairs[i][1] = return_vector[i];
+				pairs[i][0] = hashmap[return_deque[i]];
+				pairs[i][1] = return_deque[i];
 			}
 		}
-		return (create_sorted_list_deque(pairs, straggler, hasStraggler));
+		return (create_sorted_list(pairs, straggler, hasStraggler));
 	}
 }

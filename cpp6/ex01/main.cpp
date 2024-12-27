@@ -3,7 +3,7 @@
 int main(void)
 {
     Data    DataStructure;
-    DataStructure.identifier = 69420;
+    DataStructure.identifier = 12345;
     DataStructure.name = "42_Wolfsburg";
 
     std::cout << "DataStructure.identifier == " << DataStructure.identifier << std::endl;

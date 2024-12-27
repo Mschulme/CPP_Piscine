@@ -61,19 +61,24 @@ Key Point: Because the parameter is a reference and no pointers may be used insi
 void identify(Base& p)
 {
     // No pointers allowed in this function, so we use reference casting
-    try {
+    try
+    {
         dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
         return;
-    } catch (...) {}
+    }
+    catch (...) {}
 
-    try {
+    try
+    {
         dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
         return;
-    } catch (...) {}
+    }
+    catch (...) {}
 
-    try {
+    try
+    {
         dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
         return;
