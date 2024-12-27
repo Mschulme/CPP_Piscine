@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
         return (EXIT_FAILURE);
     }
 
-    ScalarConverter::convert(argv[1]); 
+    ScalarConverter::convert(argv[1]);
 
     return (EXIT_SUCCESS);
 }

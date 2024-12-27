@@ -41,9 +41,13 @@ class ScalarConverter
 
 		static void printCharacter(double value);
 		static void printInteger(double value);
-		static void printFloat(double value);
+
+		static void printFloat(float value);
+		static void printFloat(float value, int precision);
 		static void printDouble(double value);
-	
+		static void printDouble(double value, int precision);
+
+		static int countDecimalDigits(const std::string &input);
 };
 
 #endif
