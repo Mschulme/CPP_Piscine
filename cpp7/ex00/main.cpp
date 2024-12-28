@@ -17,7 +17,7 @@ int	main(void)
 	::swap(c, d);
 	std::cout << "After swap: " << "c = " << c << ", d = " << d << std::endl;
 	std::cout << "min(c, d) = " << ::min(c, d) << std::endl;
-	std::cout << "max(c, d) = " << ::max(c , d) << std::endl;
+	std::cout << "max(c, d) = " << ::max(c, d) << std::endl;
 
 	return (EXIT_SUCCESS);
 }

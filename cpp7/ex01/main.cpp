@@ -35,6 +35,17 @@ int main(void)
 			std::cout << array_int[i] << ' ';
 		}
 		std::cout << std::endl;
+
+		// Increment all values by one
+		std::cout << "Applying increment function:" << std::endl;
+		applyFunction(&array_int[0], number_of_elements, addOne<int>);
+
+		std::cout << "After increment: ";
+		for (size_t i = 0; i < number_of_elements; ++i)
+		{
+			std::cout << array_int[i] << ' ';
+		}
+		std::cout << std::endl;
 	}
 	catch (const std::exception &e)
 	{

@@ -1,11 +1,13 @@
 #include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 45
+
 int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
+
     for (int i = 0; i < MAX_VAL; i++)
     {
         const int value = rand();
@@ -43,10 +45,17 @@ int main(int, char**)
         std::cerr << e.what() << '\n';
     }
 
+
     for (int i = 0; i < MAX_VAL; i++)
     {
-        numbers[i] = rand();
+        numbers[i] = rand() % 100;
+        if (i != 0 && i % 10 == 0)
+            std::cout << numbers[i] << ' ' << std::endl;
+        else
+            std::cout << numbers[i] << ' ';
     }
+    std::cout << std::endl;
+
     delete [] mirror;
     return 0;
 }

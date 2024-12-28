@@ -7,6 +7,12 @@
 #include <stdexcept>
 
 
+template <typename U>
+U addOne(U x) {
+    return x + 1;
+}
+
+
 template <typename T, typename Function>
 void applyFunction(T array[], size_t size, Function f)
 {
