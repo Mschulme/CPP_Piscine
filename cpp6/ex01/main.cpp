@@ -13,6 +13,7 @@ int main(void)
     std::cout << "Serialized Data pointer: " << raw << std::endl;
 
     Data* deserializedData = Serializer::deserialize(raw);
+    std::cout << "Deserialized Data pointer: " << deserializedData << std::endl;
 
     if (deserializedData == &DataStructure)
     {

@@ -20,14 +20,11 @@ class Serializer
         Serializer();
         Serializer(Serializer const &other);
         Serializer &operator=(const Serializer &obj);
+        ~Serializer();
    
     public:
-        ~Serializer();
-
         static uintptr_t serialize(Data *ptr);
-
         static Data* deserialize(uintptr_t raw);
-
 };
 
 #endif

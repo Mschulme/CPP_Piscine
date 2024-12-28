@@ -1,12 +1,5 @@
 #include "ScalarConverter.hpp"
 
-#include <cmath> 
-#include <limits>
-#include <cerrno>
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
-
 
 void ScalarConverter::convert(const std::string &input)
 {
@@ -124,10 +117,8 @@ bool ScalarConverter::isDouble(const std::string &input)
 int ScalarConverter::countDecimalDigits(const std::string &input)
 {
     std::string tmp = input;
-
     if (!tmp.empty() && tmp[tmp.length() - 1] == 'f')
-        tmp[tmp.length() - 1] = 0;
-
+        tmp.resize(tmp.size() - 1);
 
     if (tmp == "inf" || tmp == "+inf" || tmp == "-inf" || tmp == "nan")
         return 1;
@@ -139,12 +130,9 @@ int ScalarConverter::countDecimalDigits(const std::string &input)
     }
     else
     {
-
         int digitsAfter = static_cast<int>(tmp.size() - dotPos - 1);
-
         if (digitsAfter <= 0)
             digitsAfter = 1;
-
         return digitsAfter;
     }
 }
@@ -195,7 +183,6 @@ void ScalarConverter::convertFloat(const std::string &input)
     char *endPtr    = NULL;
     double tempVal  = std::strtod(str, &endPtr);
 
-    // Check special values
     if (without_f == "inf" || without_f == "+inf")
         tempVal =  std::numeric_limits<double>::infinity();
     else if (without_f == "-inf")
@@ -203,7 +190,6 @@ void ScalarConverter::convertFloat(const std::string &input)
     else if (without_f == "nan")
         tempVal =  std::numeric_limits<double>::quiet_NaN();
 
-    // Check parse errors
     if (errno != 0 || *endPtr != '\0')
     {
         std::cout << "char: impossible"   << std::endl;
@@ -213,7 +199,6 @@ void ScalarConverter::convertFloat(const std::string &input)
         return;
     }
 
-    // Check if double fits in float range (non-inf)
     if (std::fabs(tempVal) > std::numeric_limits<float>::max() && !std::isinf(tempVal))
     {
         std::cout << "char: impossible"   << std::endl;
@@ -225,15 +210,14 @@ void ScalarConverter::convertFloat(const std::string &input)
 
     float valueF = static_cast<float>(tempVal);
 
-    // Determine how many decimals to print based on the original string
     int precision = countDecimalDigits(input);
 
-    // Print conversions
     printCharacter(tempVal);    
     printInteger(tempVal);
-    printFloat(valueF, precision);    // <-- pass precision here
-    printDouble(tempVal, precision);  // <-- pass precision here (optional if you want variable precision for double too)
+    printFloat(valueF, precision);
+    printDouble(tempVal, precision);
 }
+
 
 void ScalarConverter::convertDouble(const std::string &input)
 {
@@ -325,6 +309,7 @@ void ScalarConverter::printDouble(double value)
     }
 }
 
+
 void ScalarConverter::printFloat(float value, int precision)
 {
     if (std::isnan(value))
@@ -337,9 +322,7 @@ void ScalarConverter::printFloat(float value, int precision)
     }
     else
     {
-        // Use the dynamic precision
-        std::cout << std::fixed << std::setprecision(precision)
-                  << "float: " << value << "f" << std::endl;
+        std::cout << std::fixed << std::setprecision(precision) << "float: " << value << "f" << std::endl;
     }
 }
 
@@ -356,9 +339,7 @@ void ScalarConverter::printDouble(double value, int precision)
     }
     else
     {
-        // Use the dynamic precision
-        std::cout << std::fixed << std::setprecision(precision)
-                  << "double: " << value << std::endl;
+        std::cout << std::fixed << std::setprecision(precision) << "double: " << value << std::endl;
     }
 }
 
