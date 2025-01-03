@@ -15,7 +15,7 @@ Serializer::~Serializer()
 Serializer::Serializer(const Serializer& other)
 {
     std::cout << "Serializer: Copy constructor called." << std::endl;
-    ;
+    (void) other;
 }
 
 
