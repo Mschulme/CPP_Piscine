@@ -1,6 +1,6 @@
 #include "Array.hpp"
 
-#define MAX_VAL 45
+#define MAX_VAL 15
 
 int main(int, char**)
 {
@@ -10,14 +10,37 @@ int main(int, char**)
 
     for (int i = 0; i < MAX_VAL; i++)
     {
-        const int value = rand();
+        const int value = rand() % 100;
         numbers[i] = value;
         mirror[i] = value;
     }
     //SCOPE
     {
+        for (int i = 0; i < MAX_VAL; i++)
+        {
+            std::cout << numbers[i] << " ";
+        }
+        std::cout << std::endl;
+
         Array<int> tmp = numbers;
+        for (int i = 0; i < MAX_VAL; i++)
+        {
+            std::cout << tmp[i] << " ";
+        }
+        std::cout << std::endl;
+
         Array<int> test(tmp);
+        for (int i = 0; i < MAX_VAL; i++)
+        {
+            std::cout << test[i] << " ";
+        }
+        std::cout << std::endl;
+
+        for (int i = 0; i < MAX_VAL; i++)
+        {
+            std::cout << numbers[i] << " ";
+        }
+        std::cout << std::endl;
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -28,6 +51,7 @@ int main(int, char**)
             return 1;
         }
     }
+
     try
     {
         numbers[-2] = 0;
@@ -57,5 +81,5 @@ int main(int, char**)
     std::cout << std::endl;
 
     delete [] mirror;
-    return 0;
+    return EXIT_SUCCESS;
 }

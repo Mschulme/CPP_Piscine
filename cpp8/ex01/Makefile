@@ -1,4 +1,4 @@
-NAME = Array_template
+NAME = Span
 
 CXX = c++
 

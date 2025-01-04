@@ -2,10 +2,11 @@
 #define EASYFIND_HPP
 
 #include <set>
+#include <list>
 #include <vector>
 #include <cstdlib>
 #include <iostream>
-#include <algorithm> // std::find
+#include <algorithm>
 #include <stdexcept>
 
 
@@ -15,7 +16,7 @@ typename T::iterator easyfind(T &container, int value)  // Reference to containe
 {
     typename T::iterator it = std::find(container.begin(), container.end(), value);
     if (it == container.end()) // If std::find cannot locate the element, it returns container.end()
-        throw std::runtime_error("Value not found");
+        throw std::runtime_error("Value not found.");
     return it;
 }
 
@@ -26,7 +27,7 @@ typename std::set<Key, Compare, Alloc>::iterator easyfindAssociative(std::set<Ke
 {
     typename std::set<Key, Compare, Alloc>::iterator it = container.find(value); // Use find function from set container
     if (it == container.end())
-        throw std::runtime_error("Value not found in set");
+        throw std::runtime_error("Value not found in set.");
     return it;
 }
 

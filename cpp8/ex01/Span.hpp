@@ -30,6 +30,7 @@ class Span
 			{
 				++count;
 			}
+			
 			if (count > (N - data.size()))
 			{
 				throw std::out_of_range("Not enough space to add all elements from range");

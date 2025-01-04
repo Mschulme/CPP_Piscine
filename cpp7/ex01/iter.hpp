@@ -8,7 +8,8 @@
 
 
 template <typename U>
-U addOne(U x) {
+U addOne(U x)
+{
     return x + 1;
 }
 

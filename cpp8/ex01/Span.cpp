@@ -41,7 +41,8 @@ void	Span::addNumber(int num)
 	if (data.size() < N)
 	{
 		data.push_back(num);
-	} else 
+	}
+	else 
 	{
 		throw std::out_of_range("Span is full.");
 	}

@@ -1,8 +1,3 @@
-#include <set>
-#include <list>
-#include <vector>
-#include <iostream>
-
 #include "easyfind.hpp"
 
 int main()
