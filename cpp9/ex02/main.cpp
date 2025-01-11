@@ -1,10 +1,4 @@
 #include "PmergeMe.hpp"
-#include <ctime>
-#include <cmath>
-#include <vector>
-#include <deque>
-#include <iostream>
-#include <stdexcept>
 
 int counter;
 
@@ -48,8 +42,9 @@ int main(int argc, char *argv[])
         for (unsigned int i = 0; i < lengthOfVector; ++i)
             std::cout << sortedVector[i] << ' ';
         std::cout << "\nTime to process " << lengthOfVector << " elements: " << runtime << " ms\n";
+        std::cout << std::fixed;
         std::cout << "Number of comparisons: " << counter 
-                  << " (<= worst case bound of " << worst_case_number_of_comparison((double)lengthOfVector) << ")\n";
+                  << " (<= worst case bound of " <<worst_case_number_of_comparison((double)lengthOfVector) << ")\n";
 
         // Sort with std::deque
         counter = 0;
